@@ -1,5 +1,9 @@
 import checkinModel from '../models/CheckIn';
 
+import passengerModel from '../models/Passenger';
+import roomModel from '../models/Room';
+
+
 // GET {id}
 exports.checkinDetail = async (req, res) => {
   try {
@@ -38,7 +42,16 @@ exports.checkinList = async (req, res) => {
 
 
   try {
-    const checkin = await checkinModel.find({});
+    const checkin = await checkinModel.find().populate(
+      [ {
+        path: 'room',
+        model: roomModel
+      } ,
+      {
+        path: 'passenger',
+        model: passengerModel
+      } ]
+    );
     // const messages = await query.exec();;
     res.status(200).json(checkin);
     // res.status(200).json(user.messages);
