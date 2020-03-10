@@ -23,24 +23,6 @@ exports.checkinDetail = async (req, res) => {
 // GET all
 exports.checkinList = async (req, res) => {
   
-  // let query = checkinModel.find({});
-  
-//   const user = await userModel.findOne({ _id: userIdFromToken })
-//   .populate({ 
-//     path: 'messages',
-//     model:checkinModel,
-//     populate:[ {
-//       path: 'sender',
-//       model: userModel
-//     } ,
-//     {
-//       path: 'receiver',
-//       model: userModel
-//     } ]
-//  })
-
-
-
   try {
     const checkin = await checkinModel.find().populate(
       [ {
@@ -74,9 +56,6 @@ exports.checkinCreate = async (req, res) => {
     const CheckIn = new checkinModel(req.body);
     const checkin = await CheckIn.save();
     
-    // const user = await userModel.findOne({ _id: userIdFromToken });
-    // console.log(user.messages)
-    // user.messages.push(message._id);
     checkin.save();
     
     res.status(200).send({checkin})
@@ -89,3 +68,5 @@ exports.checkinCreate = async (req, res) => {
   }
 
 }
+
+

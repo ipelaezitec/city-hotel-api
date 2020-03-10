@@ -1,8 +1,6 @@
 import passengerModel from '../models/Passenger';
-// import {validationResult} from 'express-validator';
 
-
-//info de todos los pasajeros
+//GET
 exports.passengerList = async (req, res) => {
   try {
     const passengers = await passengerModel.find({});
@@ -12,7 +10,7 @@ exports.passengerList = async (req, res) => {
   }
 }
 
-//info de un pasajero especifico
+//GET /{id}
 exports.passengerDetail = async (req, res) => {
   //recupero el id pasado por param
   const idPassenger = req.params.id;
@@ -25,7 +23,7 @@ exports.passengerDetail = async (req, res) => {
   }
 }
 
-//crear un pasajero
+//POST
 exports.passengerCreate = async (req, res) => {
   try {
 
